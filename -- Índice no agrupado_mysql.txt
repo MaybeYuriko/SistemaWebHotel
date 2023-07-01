@@ -1,0 +1,48 @@
+    
+-- TABLA CLIENTE
+-- Índice no agrupado
+CREATE INDEX IDX_Cliente_DNI ON cliente(dni);
+CREATE INDEX IDX_Cliente_Telefono ON cliente(telefono);
+CREATE INDEX IDX_Cliente_Correo ON cliente(correo);
+
+-- TABLA CARGO DE EMPLEADO
+-- Índice no agrupado
+CREATE INDEX IDX_CargoEmpleado_NombreCargo ON cargo_empleado(nombre_cargo);
+CREATE INDEX IDX_CargoEmpleado_SalarioEmp ON cargo_empleado(salario_emp);
+CREATE INDEX IDX_CargoEmpleado_NombreCargoSalarioEmp ON cargo_empleado(nombre_cargo, salario_emp);
+
+-- TABLA EMPLEADO
+CREATE INDEX IDX_Empleado_IdCargoEmpleado ON empleado(id_cargo_empleado);
+CREATE INDEX IDX_Empleado_Nombre ON empleado(nombre);
+CREATE INDEX IDX_Empleado_Apellido ON empleado(apellido);
+
+-- TABLA COMPROBANTE_ALQUILER
+CREATE INDEX IDX_ComprobanteAlquiler_IdEmpleado ON comprobante_alquiler(id_empleado);
+CREATE INDEX IDX_ComprobanteAlquiler_IdReservacion ON comprobante_alquiler(id_reservacion);
+CREATE INDEX IDX_ComprobanteAlquiler_FechaEmision ON comprobante_alquiler(fecha_emision);
+CREATE INDEX IDX_ComprobanteAlquiler_FechaEntradaSalida ON comprobante_alquiler(fecha_entrada, fecha_salida);
+
+-- TABLA DE TIPO HABITACION
+-- Índice no agrupado
+CREATE INDEX IDX_TipoHabi_NombreTipo ON tipo_habi(nombre_tipo);
+CREATE INDEX IDX_TipoHabi_CostoHabi ON tipo_habi(costo_habi);
+CREATE INDEX IDX_TipoHabi_canti_perso ON tipo_habi(canti_perso);
+
+-- TABLA DE SERVICIOS
+-- Índice no agrupado
+CREATE INDEX IDX_ServiciosHabi_Descripcion ON servicios_habi(descrip_ser);
+CREATE INDEX IDX_ServiciosHabi_Costo ON servicios_habi(costo_ser);
+CREATE INDEX IDX_ServiciosHabi_DescripcionCosto ON servicios_habi(descrip_ser, costo_ser);
+
+-- TABLA DE HABITACION
+-- Índice no agrupado
+CREATE INDEX IDX_Habitacion_IdServicio ON habitacion(id_servicio);
+CREATE INDEX IDX_Habitacion_IdTipoHabi ON habitacion(id_tipohabi);
+CREATE INDEX IDX_Habitacion_NumeroPisoEstado ON habitacion(numero_piso, estado);
+
+-- TABLA RESERVACION
+-- Índice no agrupado
+CREATE INDEX idx_Reservacion_IdCliente ON reservacion(idcliente);
+CREATE INDEX idx_Reservacion_NumHabitacion ON reservacion(num_habitacion);
+CREATE INDEX idx_Reservacion_cantPersonas ON reservacion(cantidad_personas);
+CREATE INDEX idx_Reservacion_id_tipo_habi ON reservacion(id_tipohabi);
